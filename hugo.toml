@@ -1,0 +1,28 @@
+baseURL = "https://peaschtln.at/"
+defaultContentLanguage = "de"
+title = "Peaschtln Angerberg"
+theme = "PaperMod"
+
+[languages]
+  [languages.de]
+    locale = "de"
+    label = "DE"
+    weight = 1
+  [languages.en]
+    locale = "en"
+    label = "EN"
+    weight = 2
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[params]
+  author = "Peter Lechner"
+  defaultTheme = "dark"
+  disableThemeToggle = true
+
+[privacy]
+  [privacy.googleAnalytics]
+    disable = true
+  [privacy.disqus]
+    disable = true
