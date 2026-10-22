@@ -1,2 +1,71 @@
 [privacy]
 other = "This site uses no cookies, collects no data, and tracks nothing. No cookie banner needed."
+
+[skip]
+other = "Skip to content"
+[nav_label]
+other = "Main navigation"
+[language]
+other = "Language"
+
+[organized_by]
+other = "Organized by the {{ .Org }}"
+[hero_alt]
+other = "Carved Perchten mask with horns and wooden teeth"
+[to_lineup]
+other = "See the line-up"
+
+[days]
+other = "Days"
+[hours]
+other = "Hrs"
+[minutes]
+other = "Min"
+[seconds]
+other = "Sec"
+[countdown_live]
+other = "It's on!"
+[next_date_tba]
+other = "Next date to be announced"
+
+[when]
+other = "When"
+[last_time]
+other = "Last time"
+[start]
+other = "Starts"
+[from_time]
+other = "from {{ .Time }}"
+[where]
+other = "Where"
+[organizer]
+other = "Organizer"
+[route]
+other = "Plan your route"
+
+[also_featuring]
+other = "Also featuring"
+[good_to_know]
+other = "Good to know"
+
+[about_alt]
+other = "A witch with a broom in front of the Ochleit Pass Perchten"
+[gallery_alt]
+other = "Perchten at the procession in Angerberg"
+[poster_alt]
+other = "Poster for the Angerberg St. Nicholas and Perchten procession"
+[gallery_label]
+other = "Photo gallery"
+[close]
+other = "Close"
+[prev]
+other = "Previous photo"
+[next]
+other = "Next photo"
+
+[notfound_title]
+other = "A Percht got lost here."
+[notfound_text]
+other = "This page doesn't exist – but the procession is waiting."
+[notfound_cta]
+other = "Back to the homepage"

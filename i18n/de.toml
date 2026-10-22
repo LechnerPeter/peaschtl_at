@@ -1,2 +1,71 @@
 [privacy]
 other = "Diese Website verwendet keine Cookies, sammelt keine Daten und verfolgt nichts. Kein Cookie-Banner nötig."
+
+[skip]
+other = "Zum Inhalt springen"
+[nav_label]
+other = "Hauptnavigation"
+[language]
+other = "Sprache"
+
+[organized_by]
+other = "Veranstaltet von der {{ .Org }}"
+[hero_alt]
+other = "Geschnitzte Perchtenmaske mit Hörnern und Holzzähnen"
+[to_lineup]
+other = "Zum Line-up"
+
+[days]
+other = "Tage"
+[hours]
+other = "Std"
+[minutes]
+other = "Min"
+[seconds]
+other = "Sek"
+[countdown_live]
+other = "Es geht los!"
+[next_date_tba]
+other = "Nächster Termin folgt"
+
+[when]
+other = "Wann"
+[last_time]
+other = "Zuletzt"
+[start]
+other = "Beginn"
+[from_time]
+other = "ab {{ .Time }} Uhr"
+[where]
+other = "Wo"
+[organizer]
+other = "Veranstalter"
+[route]
+other = "Route planen"
+
+[also_featuring]
+other = "Außerdem dabei"
+[good_to_know]
+other = "Gut zu wissen"
+
+[about_alt]
+other = "Eine Hexe mit Besen vor den Perchten der Ochleit Pass"
+[gallery_alt]
+other = "Perchten beim Einzug in Angerberg"
+[poster_alt]
+other = "Plakat zum Angerberger Nikolaus- und Perchteneinzug"
+[gallery_label]
+other = "Bildergalerie"
+[close]
+other = "Schließen"
+[prev]
+other = "Vorheriges Bild"
+[next]
+other = "Nächstes Bild"
+
+[notfound_title]
+other = "Hier hat sich ein Percht verlaufen."
+[notfound_text]
+other = "Diese Seite gibt's nicht – aber der Einzug wartet schon."
+[notfound_cta]
+other = "Zur Startseite"
