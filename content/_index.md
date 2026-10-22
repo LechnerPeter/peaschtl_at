@@ -6,8 +6,13 @@ description = 'Angerberger Nikolaus- und Perchteneinzug: 15 Perchten-Passen (dav
 
 [params]
 headline = 'Angerberger Nikolaus- & Perchteneinzug'
-specials = ['Der Nikolaus', 'Adventbläser der BMK Angerberg-Mariastein']
+specials = ['Adventbläser der BMK Angerberg-Mariastein']
 ticket_stub = 'Für Groß & Klein'
+
+[params.headliner]
+kicker = 'Special Guest'
+name = 'Der Nikolaus'
+note = 'mit einer Überraschung für die Kleinen'
 
 [params.nogo]
 title = "Bei uns gibt's kein"

@@ -6,8 +6,13 @@ description = "The Angerberg St. Nicholas and Perchten procession: 15 Perchten g
 
 [params]
 headline = 'Angerberg St. Nicholas & Perchten Procession'
-specials = ['St. Nicholas', 'Advent brass of the BMK Angerberg-Mariastein']
+specials = ['Advent brass of the BMK Angerberg-Mariastein']
 ticket_stub = 'All ages welcome'
+
+[params.headliner]
+kicker = 'Special guest'
+name = 'St. Nicholas'
+note = 'with a surprise for the little ones'
 
 [params.nogo]
 title = "What you won't find here"

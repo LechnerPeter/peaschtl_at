@@ -794,7 +794,55 @@ a {
 /* ---------- Line-up ---------- */
 
 .lineup {
-  background: radial-gradient(60% 45% at 50% 55%, rgba(230, 184, 92, 0.08), transparent 70%);
+  background: radial-gradient(60% 45% at 50% 55%, rgba(230, 184, 92, 0.08), transparent 70%), var(--night-2);
+  border-block: 1px solid var(--line);
+}
+
+/* Headliner on top of the line-up, festival-poster style */
+.headliner {
+  display: grid;
+  justify-items: center;
+  max-width: 52rem;
+  margin: clamp(2.5rem, 6vw, 4rem) auto 0;
+  padding-bottom: clamp(2rem, 5vw, 3rem);
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+}
+
+.headliner__kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(0.85rem, 1.6vw, 1rem);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ember);
+}
+
+.headliner__kicker::before,
+.headliner__kicker::after {
+  content: "✦";
+  font-size: 0.8em;
+  letter-spacing: 0;
+}
+
+.headliner__name {
+  margin: 0.4rem 0 0;
+  font-family: var(--font-gothic);
+  font-weight: 800;
+  font-size: clamp(3.6rem, 12vw, 8.5rem);
+  line-height: 0.95;
+  color: var(--straw);
+  text-shadow: 0 0 0.6em rgba(230, 184, 92, 0.25);
+}
+
+.headliner__note {
+  margin: 0.7rem 0 0;
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  color: var(--bone-dim);
 }
 
 .lineup__list {
@@ -897,15 +945,13 @@ a {
   font-size: 1.1rem;
   letter-spacing: 0.06em;
   line-height: 1.1;
+  text-align: center;
+  text-wrap: balance;
   text-transform: uppercase;
 }
 
 /* ---------- Program ---------- */
 
-.program {
-  background: var(--night-2);
-  border-block: 1px solid var(--line);
-}
 
 .happenings {
   margin: clamp(2.5rem, 6vw, 3.5rem) 0 0;
@@ -962,6 +1008,11 @@ a {
 }
 
 /* ---------- Tradition ---------- */
+
+.tradition {
+  background: var(--night-2);
+  border-block: 1px solid var(--line);
+}
 
 .tradition__grid {
   display: grid;
@@ -1046,10 +1097,6 @@ a {
 
 /* ---------- Gallery ---------- */
 
-.photos {
-  background: var(--night-2);
-  border-block: 1px solid var(--line);
-}
 
 .gallery {
   display: grid;

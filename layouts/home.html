@@ -25,7 +25,7 @@
 {{ partial "festival/head.html" (dict "page" . "image" $ogImage) }}
 </head>
 <body>
-<a class="skip" href="#lineup">{{ T "skip" }}</a>
+<a class="skip" href="#photos">{{ T "skip" }}</a>
 
 <header class="nav" data-nav>
   <div class="wrap nav__inner">
@@ -38,7 +38,7 @@
       {{- end }}
     </p>
     <nav class="nav__links" aria-label="{{ T "nav_label" }}">
-      {{- range slice "lineup" "program" "tradition" "photos" "visit" }}
+      {{- range slice "photos" "lineup" "program" "tradition" "visit" }}
       <a href="#{{ . }}">{{ (index $sec .).title }}</a>
       {{- end }}
     </nav>
@@ -105,9 +105,23 @@
     </div>
   </section>
 
+  <section class="section photos" id="photos">
+    <div class="wrap">
+      {{ partial "festival/section-head.html" (dict "num" "01" "title" $sec.photos.title "lead" $sec.photos.lead) }}
+      {{ partial "festival/gallery.html" . }}
+    </div>
+  </section>
+
   <section class="section lineup" id="lineup">
     <div class="wrap">
-      {{ partial "festival/section-head.html" (dict "num" "01" "title" $sec.lineup.title "lead" $sec.lineup.lead "center" true) }}
+      {{ partial "festival/section-head.html" (dict "num" "02" "title" $sec.lineup.title "lead" $sec.lineup.lead "center" true) }}
+      {{- with .Params.headliner }}
+      <div class="headliner" data-reveal>
+        <p class="headliner__kicker">{{ .kicker }}</p>
+        <p class="headliner__name">{{ .name }}</p>
+        <p class="headliner__note">{{ .note }}</p>
+      </div>
+      {{- end }}
       <ul class="lineup__list" data-reveal>
         {{- range $data.passen }}
         <li class="lineup__act"><span class="lineup__name">{{ strings.TrimSuffix " Pass" . }}</span><span class="lineup__suffix">Pass</span></li>
@@ -128,7 +142,7 @@
 
   <section class="section program" id="program">
     <div class="wrap">
-      {{ partial "festival/section-head.html" (dict "num" "02" "title" $sec.program.title "lead" $sec.program.lead) }}
+      {{ partial "festival/section-head.html" (dict "num" "03" "title" $sec.program.title "lead" $sec.program.lead) }}
       <ul class="happenings">
         {{- range $i, $p := .Params.program }}
         <li class="happening" data-reveal style="--d: {{ mul $i 60 }}ms">
@@ -143,7 +157,7 @@
   <section class="section tradition" id="tradition">
     <div class="wrap tradition__grid">
       <div>
-        {{ partial "festival/section-head.html" (dict "num" "03" "title" $sec.tradition.title "lead" $sec.tradition.lead) }}
+        {{ partial "festival/section-head.html" (dict "num" "04" "title" $sec.tradition.title "lead" $sec.tradition.lead) }}
         <div class="prose" data-reveal>
           {{ .Content }}
         </div>
@@ -156,13 +170,6 @@
         <figcaption>{{ $data.town }}{{ with .Meta }}{{ if not .Date.IsZero }} · {{ .Date.Year }}{{ end }}{{ end }}</figcaption>
       </figure>
       {{- end }}
-    </div>
-  </section>
-
-  <section class="section photos" id="photos">
-    <div class="wrap">
-      {{ partial "festival/section-head.html" (dict "num" "04" "title" $sec.photos.title "lead" $sec.photos.lead) }}
-      {{ partial "festival/gallery.html" . }}
     </div>
   </section>
 
