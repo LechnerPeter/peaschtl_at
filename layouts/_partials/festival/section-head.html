@@ -1,0 +1,8 @@
+{{- /* Context: dict "num" "title" "lead" (optional) "center" (optional bool). */}}
+<header class="sec-head{{ if .center }} sec-head--center{{ end }}" data-reveal>
+  <p class="sec-num">{{ .num }}</p>
+  <h2 class="sec-title">{{ .title }}</h2>
+  {{- with .lead }}
+  <p class="sec-lead">{{ . }}</p>
+  {{- end }}
+</header>

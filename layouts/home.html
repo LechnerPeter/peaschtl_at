@@ -1,0 +1,213 @@
+{{- $data := hugo.Data.festival }}
+{{- $start := time.AsTime $data.start }}
+{{- $upcoming := now.Before $start }}
+{{- $sec := .Params.sections }}
+{{- $org := $data.organizer }}
+{{- $organizedBy := T "organized_by" (dict "Org" $org) }}
+{{- $dateFull := time.Format ":date_full" $start }}
+{{- $timeLabel := T "from_time" (dict "Time" (time.Format ":time_short" $start)) }}
+{{- $place := printf "%s, %s" $data.location $data.town }}
+{{- $hero := "" }}
+{{- $heroSmall := "" }}
+{{- $ogImage := "" }}
+{{- with resources.Get $data.poster }}
+  {{- /* Crop to the mask: the flyer's own text starts at ~60% of its height. */}}
+  {{- $w := int (math.Min .Width 1600) }}
+  {{- $h := int (math.Round (mul (mul (div (float .Height) .Width) $w) 0.56)) }}
+  {{- $hero = .Fill (printf "%dx%d Top webp q82" $w $h) }}
+  {{- $heroSmall = $hero.Resize "960x webp q80" }}
+  {{- /* Link preview: a wide band from the eyes down to the teeth. */}}
+  {{- $ogImage = (.Fill (printf "%dx%d Top jpg q95" .Width (int (mul .Height 0.445)))).Fill "1200x630 Bottom jpg q85" }}
+{{- end }}
+<!doctype html>
+<html lang="{{ site.Language.Locale }}">
+<head>
+{{ partial "festival/head.html" (dict "page" . "image" $ogImage) }}
+</head>
+<body>
+<a class="skip" href="#lineup">{{ T "skip" }}</a>
+
+<header class="nav" data-nav>
+  <div class="wrap nav__inner">
+    <a class="brand nav__brand" href="#top">Peaschtln</a>
+    <p class="organizer" title="{{ $organizedBy }}">
+      {{- with resources.Get $data.organizer_logo }}
+      <img src="{{ .RelPermalink }}" width="{{ div .Width 2 }}" height="{{ div .Height 2 }}" alt="{{ $organizedBy }}">
+      {{- else }}
+      <span class="organizer__name">{{ $org }}</span>
+      {{- end }}
+    </p>
+    <nav class="nav__links" aria-label="{{ T "nav_label" }}">
+      {{- range slice "lineup" "program" "tradition" "photos" "visit" }}
+      <a href="#{{ . }}">{{ (index $sec .).title }}</a>
+      {{- end }}
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero" id="top">
+    {{- with $hero }}
+    <div class="hero__media">
+      <img src="{{ .RelPermalink }}" srcset="{{ $heroSmall.RelPermalink }} {{ $heroSmall.Width }}w, {{ .RelPermalink }} {{ .Width }}w" sizes="(min-width: 900px) 64vw, 100vw" width="{{ .Width }}" height="{{ .Height }}" alt="{{ T "hero_alt" }}" fetchpriority="high">
+    </div>
+    {{- end }}
+    <div class="hero__snow" aria-hidden="true"></div>
+
+    <div class="wrap">
+      <div class="hero__content">
+        <h1 class="hero__title">
+          <span class="hero__word">Peaschtln</span>
+          <span class="hero__sub">{{ .Params.headline }}</span>
+        </h1>
+
+        {{- if $upcoming }}
+        <div class="countdown" role="timer" data-countdown data-start="{{ $start.Format "2006-01-02T15:04:05Z07:00" }}" data-live="{{ T "countdown_live" }}">
+          {{- range slice (dict "u" "d" "l" (T "days")) (dict "u" "h" "l" (T "hours")) (dict "u" "m" "l" (T "minutes")) (dict "u" "s" "l" (T "seconds")) }}
+          <div class="countdown__cell"><span class="countdown__num" data-unit="{{ .u }}">00</span><span class="countdown__label">{{ .l }}</span></div>
+          {{- end }}
+        </div>
+        {{- else }}
+        <p class="status"><span class="status__dot" aria-hidden="true"></span>{{ T "next_date_tba" }}</p>
+        {{- end }}
+
+        <dl class="facts">
+          {{- if $upcoming }}
+          <div><dt>{{ T "when" }}</dt><dd>{{ $dateFull }}</dd></div>
+          <div><dt>{{ T "start" }}</dt><dd>{{ $timeLabel }}</dd></div>
+          {{- else }}
+          <div><dt>{{ T "last_time" }}</dt><dd>{{ $dateFull }}</dd></div>
+          {{- end }}
+          <div><dt>{{ T "where" }}</dt><dd>{{ $place }}</dd></div>
+        </dl>
+
+        <div class="hero__cta">
+          <a class="btn btn--straw" href="#lineup">{{ T "to_lineup" }} <span aria-hidden="true">↓</span></a>
+          <a class="btn btn--ghost" href="#visit">{{ $sec.visit.title }}</a>
+        </div>
+
+        {{- with .Params.nogo }}
+        <div class="nogo">
+          <p class="nogo__kicker">{{ T "good_to_know" }}</p>
+          <div class="nogo__row">
+            <p class="nogo__title">{{ .title }}</p>
+            <ul class="nogo__list">
+              {{- range $i, $item := .items }}
+              <li style="--i: {{ $i }}">{{ $item }}</li>
+              {{- end }}
+            </ul>
+          </div>
+          <p class="nogo__note">{{ .note }}</p>
+        </div>
+        {{- end }}
+      </div>
+    </div>
+  </section>
+
+  <section class="section lineup" id="lineup">
+    <div class="wrap">
+      {{ partial "festival/section-head.html" (dict "num" "01" "title" $sec.lineup.title "lead" $sec.lineup.lead "center" true) }}
+      <ul class="lineup__list" data-reveal>
+        {{- range $data.passen }}
+        <li class="lineup__act"><span class="lineup__name">{{ strings.TrimSuffix " Pass" . }}</span><span class="lineup__suffix">Pass</span></li>
+        {{- end }}
+      </ul>
+      {{- with .Params.specials }}
+      <div class="lineup__specials" data-reveal>
+        <p class="lineup__plus">{{ T "also_featuring" }}</p>
+        <ul>
+          {{- range . }}
+          <li>{{ . }}</li>
+          {{- end }}
+        </ul>
+      </div>
+      {{- end }}
+    </div>
+  </section>
+
+  <section class="section program" id="program">
+    <div class="wrap">
+      {{ partial "festival/section-head.html" (dict "num" "02" "title" $sec.program.title "lead" $sec.program.lead) }}
+      <ul class="happenings">
+        {{- range $i, $p := .Params.program }}
+        <li class="happening" data-reveal style="--d: {{ mul $i 60 }}ms">
+          <h3 class="happening__title">{{ $p.title }}</h3>
+          <p class="happening__text">{{ $p.text }}</p>
+        </li>
+        {{- end }}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section tradition" id="tradition">
+    <div class="wrap tradition__grid">
+      <div>
+        {{ partial "festival/section-head.html" (dict "num" "03" "title" $sec.tradition.title "lead" $sec.tradition.lead) }}
+        <div class="prose" data-reveal>
+          {{ .Content }}
+        </div>
+      </div>
+      {{- with resources.Get $data.about_image }}
+      {{- $img := partial "festival/oriented.html" . }}
+      {{- $photo := $img.Fill "1100x880 Center webp q76" }}
+      <figure class="polaroid" data-reveal>
+        <img src="{{ $photo.RelPermalink }}" width="{{ $photo.Width }}" height="{{ $photo.Height }}" alt="{{ T "about_alt" }}" loading="lazy" decoding="async">
+        <figcaption>{{ $data.town }}{{ with .Meta }}{{ if not .Date.IsZero }} · {{ .Date.Year }}{{ end }}{{ end }}</figcaption>
+      </figure>
+      {{- end }}
+    </div>
+  </section>
+
+  <section class="section photos" id="photos">
+    <div class="wrap">
+      {{ partial "festival/section-head.html" (dict "num" "04" "title" $sec.photos.title "lead" $sec.photos.lead) }}
+      {{ partial "festival/gallery.html" . }}
+    </div>
+  </section>
+
+  <section class="section visit" id="visit">
+    <div class="wrap">
+      {{ partial "festival/section-head.html" (dict "num" "05" "title" $sec.visit.title "lead" $sec.visit.lead "center" true) }}
+      <div class="ticket" data-reveal>
+        <div class="ticket__main">
+          <p class="ticket__brand">Peaschtln<span>{{ $data.town }}</span></p>
+          <dl class="ticket__facts">
+            <div><dt>{{ T "where" }}</dt><dd>{{ $data.location }}, {{ $data.town }}</dd></div>
+            <div><dt>{{ T "when" }}</dt><dd>{{ if $upcoming }}{{ $dateFull }}{{ else }}{{ T "next_date_tba" }}{{ end }}</dd></div>
+            {{- if $upcoming }}
+            <div><dt>{{ T "start" }}</dt><dd>{{ $timeLabel }}</dd></div>
+            {{- end }}
+            <div><dt>{{ T "organizer" }}</dt><dd>{{ $org }}</dd></div>
+          </dl>
+          <a class="btn btn--night" href="{{ $data.map_url }}" target="_blank" rel="noopener">{{ T "route" }} <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="ticket__stub"><span>{{ .Params.ticket_stub }}</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <a class="brand footer__brand" href="#top">Peaschtln</a>
+    <p class="footer__org">{{ $organizedBy }}</p>
+    <p class="footer__privacy">{{ T "privacy" }}</p>
+    <div class="footer__bottom">
+      <p class="footer__copy">© {{ now.Year }} {{ site.Title }}</p>
+      {{ partial "festival/lang.html" . }}
+    </div>
+  </div>
+  <div class="footer__giant" aria-hidden="true">Peaschtln</div>
+</footer>
+
+<dialog class="lightbox" aria-label="{{ T "gallery_label" }}">
+  <button type="button" class="lightbox__btn lightbox__close" aria-label="{{ T "close" }}"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <p class="lightbox__count" aria-live="polite"></p>
+  <figure class="lightbox__stage"><img class="lightbox__img" alt=""></figure>
+  <button type="button" class="lightbox__btn lightbox__prev" aria-label="{{ T "prev" }}"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <button type="button" class="lightbox__btn lightbox__next" aria-label="{{ T "next" }}"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+</dialog>
+</body>
+</html>

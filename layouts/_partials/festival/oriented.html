@@ -1,0 +1,10 @@
+{{- /* Returns the image rotated according to its Exif orientation. */}}
+{{- $img := . }}
+{{- if reflect.IsImageResourceWithMeta $img }}
+  {{- with $img.Meta }}
+    {{- if gt .Orientation 1 }}
+      {{- $img = $img.Filter images.AutoOrient }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+{{- return $img }}

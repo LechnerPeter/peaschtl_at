@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="{{ site.Language.Locale }}">
+<head>
+{{ partial "festival/head.html" (dict "page" . "title" (printf "404 – %s" site.Title)) }}
+<meta name="robots" content="noindex">
+</head>
+<body>
+<main class="notfound">
+  <div class="hero__snow" aria-hidden="true"></div>
+  <div>
+    <p class="notfound__code" aria-hidden="true">404</p>
+    <h1>{{ T "notfound_title" }}</h1>
+    <p>{{ T "notfound_text" }}</p>
+    <a class="btn btn--straw" href="{{ site.Home.RelPermalink }}">{{ T "notfound_cta" }}</a>
+  </div>
+</main>
+</body>
+</html>

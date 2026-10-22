@@ -1,0 +1,33 @@
+{{- /* Photo grid: every image in assets/images/perchteln, then the event flyer. */}}
+{{- $items := slice }}
+{{- range sort (resources.Match "images/perchteln/*") "Name" }}
+  {{- $items = $items | append (dict "img" . "alt" (T "gallery_alt") "pos" "center") }}
+{{- end }}
+{{- with resources.Get hugo.Data.festival.poster }}
+  {{- $items = $items | append (dict "img" . "alt" (T "poster_alt") "pos" "top") }}
+{{- end }}
+{{- /* Tile indexes that span two columns; keeps the grid gap-free at 2, 3 and 4 columns. */}}
+{{- $big := slice 0 9 }}
+{{- $wide := slice 5 14 }}
+<div class="gallery">
+{{- range $i, $item := $items }}
+  {{- $img := partial "festival/oriented.html" $item.img }}
+  {{- $small := $img.Resize "480x webp q72" }}
+  {{- $medium := "" }}
+  {{- if gt $img.Width 960 }}{{ $medium = $img.Resize "960x webp q74" }}{{ else }}{{ $medium = $img.Process "webp q76" }}{{ end }}
+  {{- $full := "" }}
+  {{- if gt $img.Width 2000 }}{{ $full = $img.Resize "2000x webp q80" }}{{ else }}{{ $full = $img.Process "webp q82" }}{{ end }}
+  {{- $class := "" }}
+  {{- $sizes := "(min-width: 1000px) 25vw, (min-width: 700px) 33vw, 50vw" }}
+  {{- if in $big $i }}
+    {{- $class = " is-big" }}
+    {{- $sizes = "(min-width: 1000px) 50vw, (min-width: 700px) 66vw, 100vw" }}
+  {{- else if in $wide $i }}
+    {{- $class = " is-wide" }}
+    {{- $sizes = "(min-width: 1000px) 50vw, (min-width: 700px) 66vw, 100vw" }}
+  {{- end }}
+  <a class="gallery__item{{ $class }}" href="{{ $full.RelPermalink }}" data-reveal style="--d: {{ mul (mod $i 4) 70 }}ms">
+    <img src="{{ $small.RelPermalink }}" srcset="{{ $small.RelPermalink }} {{ $small.Width }}w, {{ $medium.RelPermalink }} {{ $medium.Width }}w" sizes="{{ $sizes }}" width="{{ $small.Width }}" height="{{ $small.Height }}" alt="{{ $item.alt }}" loading="lazy" decoding="async" style="object-position: {{ $item.pos }}">
+  </a>
+{{- end }}
+</div>

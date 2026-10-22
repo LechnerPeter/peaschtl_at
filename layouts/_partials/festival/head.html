@@ -1,0 +1,44 @@
+{{- /* Shared <head> for the festival pages. Context: dict "page" "title" (optional) "image" (optional). */}}
+{{- $p := .page }}
+{{- $title := site.Title }}
+{{- with $p.Params.headline }}{{ $title = printf "%s – %s" site.Title . }}{{ end }}
+{{- with .title }}{{ $title = . }}{{ end }}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js')</script>
+<title>{{ $title }}</title>
+{{- with $p.Description }}
+<meta name="description" content="{{ . }}">
+{{- end }}
+<meta name="theme-color" content="#0c0a08">
+<meta name="color-scheme" content="dark">
+{{- if $p.IsHome }}
+<link rel="canonical" href="{{ $p.Permalink }}">
+{{- range $p.AllTranslations }}
+<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+{{- end }}
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:url" content="{{ $p.Permalink }}">
+{{- with $p.Description }}
+<meta property="og:description" content="{{ . }}">
+{{- end }}
+{{- with .image }}
+<meta property="og:image" content="{{ .Permalink }}">
+<meta property="og:image:width" content="{{ .Width }}">
+<meta property="og:image:height" content="{{ .Height }}">
+<meta name="twitter:card" content="summary_large_image">
+{{- end }}
+{{- end }}
+<link rel="icon" href="{{ "favicon.ico" | relURL }}" sizes="48x48">
+<link rel="icon" type="image/svg+xml" href="{{ "favicon.svg" | relURL }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | relURL }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | relURL }}">
+<link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">
+<link rel="preload" href="{{ "fonts/grenze-gotisch-latin-wght.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ "fonts/big-shoulders-display-latin-wght.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+{{- $css := resources.Get "css/festival.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" crossorigin="anonymous">
+{{- $js := resources.Get "js/festival.js" | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" crossorigin="anonymous" defer></script>

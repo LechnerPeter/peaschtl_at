@@ -1,0 +1,32 @@
+# Event data shared by all languages.
+# Update `start` every year – the page shows a countdown while it lies in the
+# future and switches to "next date to be announced" once it has passed.
+
+organizer = "Landjugend Angerberg"
+organizer_logo = "images/landjugend-angerberg.png"
+start = "2026-12-05T15:00:00+01:00"
+location = "Parkplatz VZ Dreiklee"
+town = "Angerberg"
+map_url = "https://www.google.com/maps/search/?api=1&query=Dreiklee+Angerberg"
+
+# Event flyer: the hero shows its top part (the mask), the gallery the whole flyer.
+poster = "images/plakat-2025.jpg"
+about_image = "images/perchteln/DSC02380.JPG"
+
+passen = [
+  "Angerberger Gruab Pass",
+  "Rambazamba Pass",
+  "Unterboch Pass",
+  "Ochleit Pass",
+  "Toina Pass",
+  "Lindna Pass",
+  "Feuerwehr Pass",
+  "Brand Pass",
+  "Melcham Pass",
+  "Moosanger Pass",
+  "Auer Pass",
+  "Felderer Pass",
+  "Promill Pass",
+  "Fok'n Pass",
+  "Foastnheisl Pass",
+]
