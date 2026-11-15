@@ -8,10 +8,13 @@ theme = "PaperMod"
     locale = "de"
     label = "DE"
     weight = 1
+  # English is switched off for now; set disabled = false to bring it back
+  # (the DE/EN switch in the footer then reappears automatically).
   [languages.en]
     locale = "en"
     label = "EN"
     weight = 2
+    disabled = true
 
 [markup.goldmark.renderer]
   unsafe = true

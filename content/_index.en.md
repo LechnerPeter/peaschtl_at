@@ -49,7 +49,7 @@ title = 'Music'
 text = 'Wintery tunes to ring in the Advent season.'
 +++
 
-The Perchteln tradition in Angerberg is an old Tyrolean custom. Groups known as Perchten- or Peaschtl-Passen march through the village wearing hand-carved wooden masks, heavy costumes, cowbells and drums. With their noise and presence they are meant to drive away evil winter spirits and bring luck, health and a good harvest for the coming year.
+The Perchteln tradition in Angerberg is an old Tyrolean custom. Groups known as Peaschtl-Passen march through the village wearing hand-carved wooden masks, heavy costumes, cowbells and drums. With their noise and presence they are meant to drive away evil winter spirits and bring luck, health and a good harvest for the coming year.
 
 In Angerberg this custom has remained particularly traditional: alongside the Perchten and St. Nicholas procession at the village square, going from house to house is also part of the community. The Perchteln is therefore not just a spooky spectacle, but an important part of regional culture and identity.
 

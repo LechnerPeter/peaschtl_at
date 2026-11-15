@@ -49,7 +49,7 @@ title = 'Musik'
 text = 'Winterliche Klänge stimmen auf die Adventszeit ein.'
 +++
 
-Das Perchtln in Angerberg ist ein alter Tiroler Brauch. Dabei ziehen sogenannte Perchten- oder Peaschtl-Passen mit geschnitzten Holzmasken, schweren Kostümen, Schellen und Trommeln durch den Ort. Mit ihrem Lärm und Auftreten sollen sie böse Wintergeister vertreiben und Glück, Gesundheit sowie eine gute Ernte für das kommende Jahr bringen.
+Das Perchtln in Angerberg ist ein alter Tiroler Brauch. Dabei ziehen sogenannte Peaschtl-Passen mit geschnitzten Holzmasken, schweren Kostümen, Schellen und Trommeln durch den Ort. Mit ihrem Lärm und Auftreten sollen sie böse Wintergeister vertreiben und Glück, Gesundheit sowie eine gute Ernte für das kommende Jahr bringen.
 
 In Angerberg ist dieser Brauch besonders traditionell geblieben: Neben dem Perchten- und Nikolauseinzug am Dorfplatz gehört auch das Ziehen von Haus zu Haus zur Dorfgemeinschaft. Das Perchtln ist daher nicht nur ein schauriges Schauspiel, sondern ein wichtiger Teil der regionalen Kultur und Identität.
 

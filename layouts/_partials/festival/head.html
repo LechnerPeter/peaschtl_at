@@ -14,8 +14,10 @@
 <meta name="color-scheme" content="dark">
 {{- if $p.IsHome }}
 <link rel="canonical" href="{{ $p.Permalink }}">
+{{- if gt (len $p.AllTranslations) 1 }}
 {{- range $p.AllTranslations }}
 <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+{{- end }}
 {{- end }}
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{{ site.Title }}">

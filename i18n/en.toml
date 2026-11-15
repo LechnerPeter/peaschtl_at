@@ -12,8 +12,6 @@ other = "Language"
 other = "Organized by the {{ .Org }}"
 [hero_alt]
 other = "Carved Perchten mask with horns and wooden teeth"
-[to_lineup]
-other = "See the line-up"
 
 [days]
 other = "Days"

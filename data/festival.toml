@@ -5,9 +5,10 @@
 organizer = "Landjugend Angerberg"
 organizer_logo = "images/landjugend-angerberg.png"
 start = "2026-12-05T15:00:00+01:00"
-location = "Parkplatz VZ Dreiklee"
+location = "Dorfplatz"
 town = "Angerberg"
-map_url = "https://www.google.com/maps/search/?api=1&query=Dreiklee+Angerberg"
+# Exact spot of the Dorfplatz (lat,long)
+map_url = "https://www.google.com/maps/search/?api=1&query=47.505972210553956,12.039622371897277"
 
 # Event flyer: the hero shows its top part (the mask), the gallery the whole flyer.
 poster = "images/plakat-2025.jpg"
