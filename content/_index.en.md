@@ -19,6 +19,9 @@ title = "What you won't find here"
 items = ['Fire', 'Smoke', 'Violence']
 note = 'Loud and wild – but for the whole family.'
 
+[params.sections.flyer]
+title = '2026'
+lead = "This year's poster."
 [params.sections.lineup]
 title = 'Line-up'
 lead = "15 Perchten groups, 4 of them kids' groups – for an authentic tradition."

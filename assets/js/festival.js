@@ -54,13 +54,16 @@
     reveals.forEach((el) => el.classList.add('is-in'));
   }
 
-  // Lightbox for the photo grid. Without JS the links simply open the full image.
+  // Lightbox for links with data-lightbox; links sharing a value form one group to
+  // page through (the photo grid), a lone link (the flyer) opens on its own.
+  // Without JS the links simply open the full image.
   const dialog = document.querySelector('.lightbox');
-  const items = [...document.querySelectorAll('.gallery__item')];
-  if (dialog && items.length && typeof dialog.showModal === 'function') {
+  const links = [...document.querySelectorAll('[data-lightbox]')];
+  if (dialog && links.length && typeof dialog.showModal === 'function') {
     const img = dialog.querySelector('.lightbox__img');
     const stage = dialog.querySelector('.lightbox__stage');
     const count = dialog.querySelector('.lightbox__count');
+    let items = [];
     let current = 0;
 
     const at = (i) => items[(i + items.length) % items.length];
@@ -68,15 +71,19 @@
       current = (i + items.length) % items.length;
       img.src = at(current).href;
       img.alt = at(current).querySelector('img').alt;
-      count.textContent = `${current + 1} / ${items.length}`;
-      new Image().src = at(current + 1).href;
-      new Image().src = at(current - 1).href;
+      count.textContent = items.length > 1 ? `${current + 1} / ${items.length}` : '';
+      if (items.length > 1) {
+        new Image().src = at(current + 1).href;
+        new Image().src = at(current - 1).href;
+      }
     };
 
-    items.forEach((item, i) => {
-      item.addEventListener('click', (e) => {
+    links.forEach((link) => {
+      link.addEventListener('click', (e) => {
         e.preventDefault();
-        show(i);
+        items = links.filter((l) => l.dataset.lightbox === link.dataset.lightbox);
+        dialog.classList.toggle('is-single', items.length < 2);
+        show(items.indexOf(link));
         dialog.showModal();
       });
     });
@@ -101,7 +108,7 @@
       if (startX === null) return;
       const dx = e.clientX - startX;
       startX = null;
-      if (Math.abs(dx) > 50) {
+      if (Math.abs(dx) > 50 && items.length > 1) {
         swiped = true;
         show(current + (dx < 0 ? 1 : -1));
       }

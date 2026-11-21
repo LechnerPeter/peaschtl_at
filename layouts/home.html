@@ -5,7 +5,6 @@
 {{- $org := $data.organizer }}
 {{- $organizedBy := T "organized_by" (dict "Org" $org) }}
 {{- $dateFull := time.Format ":date_full" $start }}
-{{- $timeLabel := T "from_time" (dict "Time" (time.Format ":time_short" $start)) }}
 {{- $place := printf "%s, %s" $data.location $data.town }}
 {{- $hero := "" }}
 {{- $heroSmall := "" }}
@@ -25,7 +24,7 @@
 {{ partial "festival/head.html" (dict "page" . "image" $ogImage) }}
 </head>
 <body>
-<a class="skip" href="#photos">{{ T "skip" }}</a>
+<a class="skip" href="#flyer">{{ T "skip" }}</a>
 
 <header class="nav" data-nav>
   <div class="wrap nav__inner">
@@ -38,7 +37,7 @@
       {{- end }}
     </p>
     <nav class="nav__links" aria-label="{{ T "nav_label" }}">
-      {{- range slice "photos" "lineup" "program" "tradition" "visit" }}
+      {{- range slice "flyer" "photos" "lineup" "program" "tradition" "visit" }}
       <a href="#{{ . }}">{{ (index $sec .).title }}</a>
       {{- end }}
     </nav>
@@ -75,7 +74,7 @@
         <dl class="facts">
           {{- if $upcoming }}
           <div><dt>{{ T "when" }}</dt><dd>{{ $dateFull }}</dd></div>
-          <div><dt>{{ T "start" }}</dt><dd>{{ $timeLabel }}</dd></div>
+          <div><dt>{{ T "start" }}</dt><dd class="schedule">{{ partial "festival/schedule.html" . }}</dd></div>
           {{- else }}
           <div><dt>{{ T "last_time" }}</dt><dd>{{ $dateFull }}</dd></div>
           {{- end }}
@@ -100,16 +99,49 @@
     </div>
   </section>
 
+  {{- with resources.Get $data.flyer }}
+  {{- $thumb := .Resize "640x webp q82" }}
+  {{- $thumb2x := .Resize "1280x webp q78" }}
+  {{- $full := .Resize "1600x webp q84" }}
+  <section class="section flyer" id="flyer">
+    <div class="wrap">
+      {{ partial "festival/section-head.html" (dict "num" "01" "title" $sec.flyer.title "lead" $sec.flyer.lead "center" true) }}
+      <a class="flyer__link" href="{{ $full.RelPermalink }}" data-lightbox="flyer" data-reveal>
+        <img src="{{ $thumb.RelPermalink }}" srcset="{{ $thumb.RelPermalink }} {{ $thumb.Width }}w, {{ $thumb2x.RelPermalink }} {{ $thumb2x.Width }}w" sizes="(min-width: 700px) 26rem, calc(100vw - 2rem)" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}" alt="{{ T "flyer_alt" }}" loading="lazy" decoding="async">
+        <span class="flyer__hint"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg>{{ T "flyer_hint" }}</span>
+      </a>
+      {{- with $data.sponsors }}
+      <div class="sponsors" data-reveal>
+        <p class="sponsors__title">{{ T "sponsors_title" }}</p>
+        <ul class="sponsors__list">
+          {{- range $s := . }}
+          <li>
+            <a href="{{ $s.url }}" target="_blank" rel="noopener sponsored" title="{{ $s.name }}">
+              {{- with and $s.logo (resources.Get $s.logo) }}
+              <img src="{{ .RelPermalink }}" alt="{{ $s.name }}" loading="lazy">
+              {{- else }}
+              <span class="sponsors__name">{{ $s.name }}</span>
+              {{- end }}
+            </a>
+          </li>
+          {{- end }}
+        </ul>
+      </div>
+      {{- end }}
+    </div>
+  </section>
+  {{- end }}
+
   <section class="section photos" id="photos">
     <div class="wrap">
-      {{ partial "festival/section-head.html" (dict "num" "01" "title" $sec.photos.title "lead" $sec.photos.lead) }}
+      {{ partial "festival/section-head.html" (dict "num" "02" "title" $sec.photos.title "lead" $sec.photos.lead) }}
       {{ partial "festival/gallery.html" . }}
     </div>
   </section>
 
   <section class="section lineup" id="lineup">
     <div class="wrap">
-      {{ partial "festival/section-head.html" (dict "num" "02" "title" $sec.lineup.title "lead" $sec.lineup.lead "center" true) }}
+      {{ partial "festival/section-head.html" (dict "num" "03" "title" $sec.lineup.title "lead" $sec.lineup.lead "center" true) }}
       {{- with .Params.headliner }}
       <div class="headliner" data-reveal>
         <p class="headliner__kicker">{{ .kicker }}</p>
@@ -137,7 +169,7 @@
 
   <section class="section program" id="program">
     <div class="wrap">
-      {{ partial "festival/section-head.html" (dict "num" "03" "title" $sec.program.title "lead" $sec.program.lead) }}
+      {{ partial "festival/section-head.html" (dict "num" "04" "title" $sec.program.title "lead" $sec.program.lead) }}
       <ul class="happenings">
         {{- range $i, $p := .Params.program }}
         <li class="happening" data-reveal style="--d: {{ mul $i 60 }}ms">
@@ -152,7 +184,7 @@
   <section class="section tradition" id="tradition">
     <div class="wrap tradition__grid">
       <div>
-        {{ partial "festival/section-head.html" (dict "num" "04" "title" $sec.tradition.title "lead" $sec.tradition.lead) }}
+        {{ partial "festival/section-head.html" (dict "num" "05" "title" $sec.tradition.title "lead" $sec.tradition.lead) }}
         <div class="prose" data-reveal>
           {{ .Content }}
         </div>
@@ -170,7 +202,7 @@
 
   <section class="section visit" id="visit">
     <div class="wrap">
-      {{ partial "festival/section-head.html" (dict "num" "05" "title" $sec.visit.title "lead" $sec.visit.lead "center" true) }}
+      {{ partial "festival/section-head.html" (dict "num" "06" "title" $sec.visit.title "lead" $sec.visit.lead "center" true) }}
       <div class="ticket" data-reveal>
         <div class="ticket__main">
           <p class="ticket__brand">Peaschtln<span>{{ $data.town }}</span></p>
@@ -178,7 +210,7 @@
             <div><dt>{{ T "where" }}</dt><dd>{{ $data.location }}, {{ $data.town }}</dd></div>
             <div><dt>{{ T "when" }}</dt><dd>{{ if $upcoming }}{{ $dateFull }}{{ else }}{{ T "next_date_tba" }}{{ end }}</dd></div>
             {{- if $upcoming }}
-            <div><dt>{{ T "start" }}</dt><dd>{{ $timeLabel }}</dd></div>
+            <div><dt>{{ T "start" }}</dt><dd class="schedule">{{ partial "festival/schedule.html" . }}</dd></div>
             {{- end }}
             <div><dt>{{ T "organizer" }}</dt><dd>{{ $org }}</dd></div>
           </dl>

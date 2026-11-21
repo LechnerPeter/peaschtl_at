@@ -1,0 +1,4 @@
+{{- /* Start times from data/festival.toml [[schedule]], one line each: "15:00 Uhr Adventbläser". */}}
+{{- range hugo.Data.festival.schedule }}
+<span class="schedule__line"><span class="schedule__time">{{ T "clock_time" (dict "Time" (time.Format ":time_short" (time.AsTime .time))) }}</span> {{ T .what }}</span>
+{{- end }}

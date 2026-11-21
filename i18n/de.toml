@@ -32,8 +32,12 @@ other = "Wann"
 other = "Zuletzt"
 [start]
 other = "Beginn"
-[from_time]
-other = "ab {{ .Time }} Uhr"
+[clock_time]
+other = "{{ .Time }} Uhr"
+[schedule_music]
+other = "Adventbläser"
+[schedule_perchten]
+other = "Perchten-Passen"
 [where]
 other = "Wo"
 [organizer]
@@ -52,6 +56,12 @@ other = "Eine Hexe mit Besen vor den Perchten der Ochleit Pass"
 other = "Perchten beim Einzug in Angerberg"
 [poster_alt]
 other = "Plakat zum Angerberger Nikolaus- und Perchteneinzug"
+[flyer_alt]
+other = "Plakat zum Angerberger Nikolaus- und Perchteneinzug 2026: Samstag, 5. Dezember 2026 am Dorfplatz Angerberg, ab 15:00 Uhr Adventbläser, ab 16:00 Uhr 15 Perchten-Passen, Besuch vom heiligen Nikolaus"
+[flyer_hint]
+other = "Plakat vergrößern"
+[sponsors_title]
+other = "Mit freundlicher Unterstützung von"
 [gallery_label]
 other = "Bildergalerie"
 [close]

@@ -19,6 +19,9 @@ title = "Bei uns gibt's kein"
 items = ['Feuer', 'Rauch', 'Gewalt']
 note = 'Laut und wild – aber für die ganze Familie.'
 
+[params.sections.flyer]
+title = '2026'
+lead = 'Das Plakat zum diesjährigen Einzug.'
 [params.sections.lineup]
 title = 'Line-up'
 lead = '15 Perchten-Passen, davon 4 Kinderpassen – für ein unverfälschtes Brauchtum.'

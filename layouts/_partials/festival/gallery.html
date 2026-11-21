@@ -26,7 +26,7 @@
     {{- $class = " is-wide" }}
     {{- $sizes = "(min-width: 1000px) 50vw, (min-width: 700px) 66vw, 100vw" }}
   {{- end }}
-  <a class="gallery__item{{ $class }}" href="{{ $full.RelPermalink }}" data-reveal style="--d: {{ mul (mod $i 4) 70 }}ms">
+  <a class="gallery__item{{ $class }}" href="{{ $full.RelPermalink }}" data-lightbox="gallery" data-reveal style="--d: {{ mul (mod $i 4) 70 }}ms">
     <img src="{{ $small.RelPermalink }}" srcset="{{ $small.RelPermalink }} {{ $small.Width }}w, {{ $medium.RelPermalink }} {{ $medium.Width }}w" sizes="{{ $sizes }}" width="{{ $small.Width }}" height="{{ $small.Height }}" alt="{{ $item.alt }}" loading="lazy" decoding="async" style="object-position: {{ $item.pos }}">
   </a>
 {{- end }}

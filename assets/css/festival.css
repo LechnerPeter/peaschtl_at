@@ -564,6 +564,20 @@ a {
   line-height: 1.15;
 }
 
+/* Two start times under "Beginn", one per line */
+.schedule__line {
+  display: block;
+  white-space: nowrap;
+}
+
+.schedule__time {
+  font-weight: 800;
+}
+
+.facts .schedule__line + .schedule__line {
+  margin-top: 0.1rem;
+}
+
 /* "Gut zu wissen": no fire, no smoke, no violence */
 .nogo {
   width: fit-content;
@@ -1065,6 +1079,138 @@ a {
   text-align: center;
 }
 
+/* ---------- Flyer (this year's poster) ---------- */
+
+.flyer {
+  background: radial-gradient(50% 40% at 50% 60%, rgba(230, 184, 92, 0.1), transparent 70%), var(--night-2);
+  border-block: 1px solid var(--line);
+}
+
+.flyer__link {
+  display: grid;
+  justify-items: center;
+  gap: 1.4rem;
+  width: min(26rem, 100%);
+  margin: clamp(2.5rem, 6vw, 3.5rem) auto 0;
+  text-decoration: none;
+  transition: transform 0.35s var(--ease);
+}
+
+.flyer__link img {
+  width: 100%;
+  border-radius: 6px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(243, 233, 210, 0.08);
+  transition: box-shadow 0.35s var(--ease);
+}
+
+.flyer__link:hover {
+  transform: translateY(-6px);
+}
+
+.flyer__link:hover img {
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.65), 0 0 0 2px var(--straw);
+}
+
+/* "Plakat vergrößern" pill below the poster */
+.flyer__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.05rem 0.5rem;
+  border-radius: 999px;
+  background: var(--straw);
+  color: var(--night);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+  transition: background-color 0.2s;
+}
+
+.flyer__hint svg {
+  flex: none;
+}
+
+/* Sponsors, under the flyer */
+.sponsors {
+  max-width: 68rem;
+  margin: clamp(3rem, 7vw, 4.5rem) auto 0;
+  padding-top: clamp(2rem, 5vw, 2.75rem);
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+
+.sponsors__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.sponsors__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1.75rem 2.5rem;
+  margin: 1.6rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sponsors__list a {
+  display: block;
+  padding: 0.4rem;
+  border-radius: 6px;
+  color: var(--bone);
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.2s, transform 0.2s var(--ease);
+}
+
+.sponsors__list a:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.sponsors__list img {
+  display: block;
+  width: auto;
+  height: 2rem;
+  max-width: 14rem;
+  object-fit: contain;
+}
+
+.sponsors__name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 699px) {
+  .sponsors__list {
+    gap: 1.4rem 2rem;
+  }
+
+  .sponsors__list img {
+    height: 1.6rem;
+    max-width: 9rem;
+  }
+}
+
+.flyer__link:hover .flyer__hint {
+  background: var(--bone);
+}
+
 /* ---------- Gallery ---------- */
 
 
@@ -1212,6 +1358,12 @@ a {
 .lightbox__close {
   top: 1rem;
   right: 1rem;
+}
+
+/* A single image (the flyer) has nothing to page through */
+.lightbox.is-single .lightbox__prev,
+.lightbox.is-single .lightbox__next {
+  display: none;
 }
 
 .lightbox__prev,

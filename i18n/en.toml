@@ -32,8 +32,12 @@ other = "When"
 other = "Last time"
 [start]
 other = "Starts"
-[from_time]
-other = "from {{ .Time }}"
+[clock_time]
+other = "{{ .Time }}"
+[schedule_music]
+other = "Advent brass"
+[schedule_perchten]
+other = "Perchten groups"
 [where]
 other = "Where"
 [organizer]
@@ -52,6 +56,12 @@ other = "A witch with a broom in front of the Ochleit Pass Perchten"
 other = "Perchten at the procession in Angerberg"
 [poster_alt]
 other = "Poster for the Angerberg St. Nicholas and Perchten procession"
+[flyer_alt]
+other = "Poster for the 2026 Angerberg St. Nicholas and Perchten procession: Saturday, December 5, 2026 at the Dorfplatz Angerberg, Advent brass from 3 pm, 15 Perchten groups from 4 pm, visit from St. Nicholas"
+[flyer_hint]
+other = "View poster"
+[sponsors_title]
+other = "Kindly supported by"
 [gallery_label]
 other = "Photo gallery"
 [close]

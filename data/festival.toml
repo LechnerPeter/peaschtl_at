@@ -10,13 +10,16 @@ town = "Angerberg"
 # Exact spot of the Dorfplatz (lat,long)
 map_url = "https://www.google.com/maps/search/?api=1&query=47.505972210553956,12.039622371897277"
 
-# Event flyer: the hero shows its top part (the mask), the gallery the whole flyer.
+# Flyer for the upcoming event, shown in its own section at the top of the page.
+flyer = "images/plakat-2026.jpg"
+
+# Last year's flyer: the hero shows its top part (the mask), the gallery the whole flyer.
 poster = "images/plakat-2025.jpg"
 about_image = "images/perchteln/DSC02380.JPG"
 
 passen = [
   "Angerberger Gruab Pass",
-  "Rambazamba Pass",
+  "Wüdara Pass",
   "Unterboch Pass",
   "Ochleit Pass",
   "Toina Pass",
@@ -31,3 +34,35 @@ passen = [
   "Fok'n Pass",
   "Foastnheisl Pass",
 ]
+
+# Start times shown under "Beginn" (hero and ticket). `what` is a text key from
+# i18n/de.toml. The countdown runs to `start` above, so keep it equal to the first time.
+[[schedule]]
+time = "2026-12-05T15:00:00+01:00"
+what = "schedule_music"
+
+[[schedule]]
+time = "2026-12-05T16:00:00+01:00"
+what = "schedule_perchten"
+
+# Sponsors, shown under the flyer. Logos are white SVGs in assets/images/sponsors/;
+# without a logo the name is shown as text.
+[[sponsors]]
+name = "Lüftner Reisen"
+url = "https://www.lueftner.at/"
+logo = "images/sponsors/lueftner.svg"
+
+[[sponsors]]
+name = "pixelschupfa"
+url = "https://www.pixelschupfa.com/"
+logo = "images/sponsors/pixelschupfa.svg"
+
+[[sponsors]]
+name = "Sparkasse Kufstein"
+url = "https://www.sparkasse.at/kufstein/privatkunden"
+logo = "images/sponsors/sparkasse-kufstein.svg"
+
+[[sponsors]]
+name = "Mariasteinerhof"
+url = "https://www.mariasteinerhof.at/"
+logo = "images/sponsors/mariasteinerhof.png"
